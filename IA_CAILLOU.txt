@@ -1,0 +1,21 @@
+CAILLOU APPS V10.1 — CAILLOU IA
+
+Cette version ajoute « Caillou IA », séparée de « Caillou Assistant ».
+
+Caillou Assistant = assistant local pour les fonctions de l'application.
+Caillou IA = vraie IA conversationnelle en ligne via un endpoint compatible.
+
+IMPORTANT : aucune clé API n'est incluse dans le site ou le dépôt GitHub.
+La clé saisie dans Caillou IA est conservée localement sur l'appareil.
+Pour une utilisation plus sûre, utiliser un proxy/serveur privé qui garde la clé côté serveur.
+
+Dans Caillou IA :
+1. Ouvrir l'application.
+2. Renseigner l'adresse du service compatible.
+3. Renseigner le modèle.
+4. Renseigner la clé seulement si le service l'exige.
+5. Enregistrer.
+6. Poser une question.
+
+La conversation est conservée localement et peut être effacée ou exportée.
+Le fonctionnement dépend du service configuré et de sa politique CORS.

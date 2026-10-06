@@ -1,0 +1,3 @@
+Caillou Apps V9
+
+Améliorations majeures : Caillou Assistant local plus intelligent (calculs/conversions discrets), Pac-Man et Tetris séparés avec collisions et fin de partie, Faux instrument multi-instruments avec enregistrement/lecture, Roue de décision personnalisable, Bloc-notes amélioré, Aide & Sécurité Code avec explication du score, graphismes et interface renforcés.
