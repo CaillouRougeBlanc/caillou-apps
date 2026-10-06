@@ -1,0 +1,2 @@
+Caillou Apps V11.0 Ultimate
+Lancement robuste, récupération d’erreurs, diagnostic complet, cache PWA renouvelé et finition graphique améliorée.
