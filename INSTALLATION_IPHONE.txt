@@ -1,0 +1,33 @@
+CAILLOU APPS — INSTALLATION SUR IPHONE
+======================================
+
+Cette version est une PWA (Progressive Web App). Elle est conçue pour ton
+PC HP sous Windows et pour une installation privée sur les iPhone de ta famille.
+
+IMPORTANT
+---------
+Les fichiers doivent être servis depuis une adresse HTTPS pour que le mode
+hors-ligne et le Service Worker fonctionnent correctement.
+
+SUR L'IPHONE
+------------
+1. Ouvre l'adresse HTTPS de Caillou Apps dans Safari.
+2. Appuie sur Partager.
+3. Choisis « Sur l'écran d'accueil ».
+4. Active « Ouvrir comme app web » si l'option est proposée.
+5. Appuie sur Ajouter.
+
+L'icône Caillou Apps apparaît alors sur l'écran d'accueil et l'application
+s'ouvre dans son propre mode app web.
+
+POUR LA FAMILLE
+---------------
+Chaque membre peut ouvrir la même adresse sur son iPhone et ajouter sa propre
+icône à l'écran d'accueil. Les données locales restent propres à chaque appareil.
+
+DEPUIS WINDOWS
+---------------
+Tu peux héberger ce dossier sur un service web HTTPS. Le dossier à publier est
+celui-ci, avec index.html, manifest.webmanifest, sw.js et le dossier icons.
+
+Cette PWA n'est pas une publication App Store et ne nécessite pas Xcode.
