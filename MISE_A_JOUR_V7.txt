@@ -1,0 +1,14 @@
+CAILLOU APPS — VERSION 7
+
+Cette version conserve les applications tactiles existantes et améliore surtout leur présentation sans remplacer leurs écrans par des versions génériques.
+
+Améliorations :
+- fenêtre d’application commune, plus proche du lanceur ordinateur ;
+- barre supérieure avec icône, nom, catégorie et retour ;
+- cartes, panneaux, ombres, profondeur et animations améliorés ;
+- réglages avec aperçu immédiat du thème, accent et taille du texte ;
+- cache PWA V7 pour forcer la récupération de la nouvelle version ;
+- 41 applications conservées dans le catalogue ;
+- écran d’accueil avec photographie de mer paradisiaque en arrière-plan.
+
+Pour mettre à jour GitHub Pages : remplace le contenu du dossier pwa/ par ces fichiers.

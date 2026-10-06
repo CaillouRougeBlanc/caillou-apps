@@ -1,0 +1,11 @@
+CAILLOU APPS 6.0
+
+- Gros relooking du lanceur, plus proche de la version ordinateur
+- Réglages entièrement fonctionnels
+- Thèmes, accent, taille du texte, descriptions, cartes compactes, animations et notifications
+- Gestion des applications
+- Profil / XP / applications récentes
+- Nouvelle page À propos
+- Écran d'accueil avec vraie photo de mer paradisiaque + couche d'animation
+- Cache PWA versionné pour que les futures mises à jour arrivent correctement
+- Catégorie Bien-être supprimée ; Cohérence cardiaque reste dans Outils
