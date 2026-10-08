@@ -1,0 +1,8 @@
+Caillou Apps V12.3
+- Mot de passe privé : Caillou
+- Demande à nouveau le mot de passe après changement de version
+- Bouton afficher/masquer le mot de passe
+- Service worker corrigé avec les icônes réellement présentes
+- Une seule inscription du service worker
+- Les requêtes vers les API externes ne sont plus interceptées ni mises en cache par le service worker
+- 42 applications conservées
