@@ -31,9 +31,3 @@ Tu peux héberger ce dossier sur un service web HTTPS. Le dossier à publier est
 celui-ci, avec index.html, manifest.webmanifest, sw.js et le dossier icons.
 
 Cette PWA n'est pas une publication App Store et ne nécessite pas Xcode.
-
-
-PROTECTION PRIVÉE
------------------
-Cette version affiche un écran de code d'accès. Le code de cette version est fourni séparément au propriétaire.
-Pour une vraie protection contre des personnes qui peuvent inspecter ou modifier le code source, héberge l'application derrière une authentification côté serveur (un simple code JavaScript ne constitue pas une sécurité forte).
