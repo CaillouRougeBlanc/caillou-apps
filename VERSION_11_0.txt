@@ -1,2 +1,5 @@
-Caillou Apps V11.0 Ultimate
-Lancement robuste, récupération d’erreurs, diagnostic complet, cache PWA renouvelé et finition graphique améliorée.
+Caillou Apps V11.2 — correction du lancement
+- Correction du lanceur Météo
+- Icônes PWA ajoutées
+- Service Worker corrigé
+- Écran privé par code d'accès
