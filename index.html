@@ -110,7 +110,7 @@ const apps=[
 ['🚀','Space Invaders','Jeu spatial','space'],['🏎️','Course de voitures','Course automobile','race'],['👾','Pac-Man','Arcade classique','pacman'],['🧩','Tetris','Casse-tête','tetris'],['🎡','Roue de décision','Roue interactive','wheel'],['🖱️','Click Challenge','3 défis tactiles','click'],['📝','Bloc-notes','Pages à écrire et conserver','notes'],['🔄','Convertisseur','Monnaie, distances, masses, volumes, temps, températures','convert'],['🎹','Faux instrument','Mélodie, instruments, notes et bibliothèque','instrument'],['🎲','Lanceur','Dés, pièces et tableau de résultats','dice'],['🎲','Générateur de gages','Gages drôles aléatoires','dare'],['🏓','Caillou Pong','Pong contre une IA','pong'],['🦖','Caillou Dino Run','Cours, saute et bats ton record','dino'],['🧠','Memory','Mémoire avec niveaux et meilleur score','memory'],['❓','Quiz','Quiz général avec score et difficulté','quiz'],['🧩','Puzzle','Puzzle coulissant 3×3','puzzle'],['📅','Calendrier','Calendrier et événements locaux','calendar'],['🔐','Coffre-fort local','Notes protégées par un code','vault'],['🗺️','Carte','Recherche de lieux et carte','map'],['☀️','Soleil & Lune','Informations sur le Soleil et la Lune','sun'],['🤖','Caillou Assistant','Assistant local Caillou Apps','assistant'],['🧠','Caillou IA','Vraie IA en ligne configurable, avec conversation et mémoire locale','realai'],['⭕','Morpion','Jeu tactile à deux joueurs','ttt'],['✊','Pierre Papier Ciseaux','Contre l’ordinateur','rps'],['📖','Dictionnaire','Recherche de définitions','dict'],['🔢','Sudoku','Grille de Sudoku','sudoku'],['🕹️','Mini Arcade','Défis tactiles','arcade'],['🎰','Machine à sous fictive','Machine à sous sans argent réel','slots'],['🧮','Calculatrice scientifique','Calculs scientifiques','calc'],['👥','Créateur d’équipe aléatoire','Répartit une liste en équipes','teams'],['📚','Fiches de révision','Créer et consulter des fiches','flash'],['🌈','Créateur de fonds d’écran','Créer un fond personnalisé','wall'],['🎞️','Créateur de GIF simple','Assembler des images en aperçu animé','gif'],['🖌️','Caillou Paint','Dessin tactile','paint'],['☑️','Checklist','Tâches à cocher','check'],['🧳','Préparateur de voyage','Préparer un voyage','trip'],['❔','App Mystère','Découvrir un secret','mystery'],['🛡️','Aide & Sécurité Code','Génération et évaluation de mots de passe','security'],['🌦️','Météo & ciel','Météo, marées et ciel spatial','weather'],['🌿','Cohérence cardiaque','Respiration guidée personnalisable','breath'],['⏱️','Chronomètres & Alarmes','Chronomètre, compte à rebours et alarmes','timer'],['🔒','Journal intime sécurisé','Journaux locaux protégés par code','journal']
 ];
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const APP_VERSION='12.1';
+const APP_VERSION='12.2';
 const PRIVATE_PASSWORD='Caillou';
 const PRIVATE_STORAGE_KEY='caillou_private_unlocked_version';
 function isPrivateUnlocked(){
@@ -453,9 +453,31 @@ function journal(b){
  journalText.value=localStorage.getItem(key)||'';window.saveJournal=()=>{localStorage.setItem(key,journalText.value);journalStatus.textContent='Enregistré sur cet appareil.'};window.clearJournal=()=>{journalText.value='';localStorage.removeItem(key);journalStatus.textContent='Effacé.'};
 }
 
+function weather(b){
+  b.innerHTML=panel('🌦️ Météo & ciel',`<p class="small">Entre une ville pour obtenir les conditions actuelles et une prévision simple.</p><div class="row"><input id="weatherCity" class="field" placeholder="Ville (ex. Angers)" value="Angers"><button onclick="loadWeather()">Rechercher</button></div><div id="weatherResult" class="out">Aucune recherche effectuée.</div>`);
+  window.loadWeather=async()=>{
+    const city=(document.getElementById('weatherCity')?.value||'').trim();
+    const out=document.getElementById('weatherResult');
+    if(!city){out.textContent='Entre une ville puis réessaie.';return;}
+    out.textContent='Recherche en cours…';
+    try{
+      const g=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(city)+'&count=1&language=fr&format=json').then(r=>r.json());
+      const place=g.results?.[0];
+      if(!place)throw new Error('Ville introuvable');
+      const w=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+place.latitude+'&longitude='+place.longitude+'&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&timezone=auto').then(r=>r.json());
+      const c=w.current||{};
+      const labels={0:'Ciel dégagé',1:'Plutôt dégagé',2:'Partiellement nuageux',3:'Couvert',45:'Brouillard',48:'Brouillard givrant',51:'Bruine légère',53:'Bruine',55:'Bruine forte',61:'Pluie légère',63:'Pluie',65:'Pluie forte',71:'Neige légère',73:'Neige',75:'Neige forte',80:'Averses légères',81:'Averses',82:'Fortes averses',95:'Orage',96:'Orage avec grêle',99:'Orage avec forte grêle'};
+      out.innerHTML='<b>'+esc(place.name)+(place.country?' · '+esc(place.country):'')+'</b><br>🌡️ '+esc(c.temperature_2m)+' '+esc(w.current_units?.temperature_2m||'°C')+' · '+esc(labels[c.weather_code]||'Conditions inconnues')+'<br>💨 Vent : '+esc(c.wind_speed_10m)+' '+esc(w.current_units?.wind_speed_10m||'km/h');
+    }catch(e){out.textContent='Impossible de récupérer la météo. Vérifie la connexion puis réessaie.';recordError(e)}
+  };
+}
 Object.assign(views,{ttt,rps,dict,sudoku,arcade,calc,flash,check,assistant,realai,security,convert,weather,space,race,pacman,tetris,wheel,click:clickChallenge,notes,instrument,dice,dare,slots,pong,dino,memory,quiz,puzzle,calendar,vault,map:mapApp,sun,passgen,teams,wall,gif,paint,trip,mystery,breath,timer,journal});
 applyTheme();render();
-try{if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js?v=12.0',{updateViaCache:'none'}).catch(()=>{});}catch{}
+try{if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js?v=12.2',{updateViaCache:'none'}).catch(()=>{});}catch{}
+</script><script>
+document.addEventListener('DOMContentLoaded',()=>{
+  initPrivateLock();
+});
 </script><script>
 document.addEventListener('DOMContentLoaded',()=>{
   const input=document.getElementById('privatePin');
